@@ -58,8 +58,49 @@ public class MyHeap <Ttype> {
 	
 	
 	
-	//add - enqueue
+	public void enqueue(Ttype element) {
+		if(isFull())
+		{
+			resize();
+		}
+		
+		
+		heap[counter] = element;
+		counter++;
+		
+		//reheapUp funcijas izsaukums
+	}
 	
+	
+	private void reheapUp(int currentIndex) {
+		//kreisā bērna index =  vecāka index * 2 + 1
+		//labā bērna index = vecāka index * 2 + 2
+		
+		//vecāka index = (kreisā bērna index -1 )/2
+		//vecāka index = (labā bērna index -2 )/2
+		
+		
+		
+		int parentIndex = (int)(currentIndex -1 )/2; //mākslīgi labajam bērnam nogriežam .5
+		
+		if(parentIndex >= 0)
+		{
+			if( ((Comparable)heap[currentIndex]).compareTo(heap[parentIndex]) == 1)
+			{
+				swap(currentIndex, parentIndex);
+				reheapUp(parentIndex);
+			}
+		}
+		
+		
+		
+		
+	}
+	private void swap(int index1, int index2) {
+		Ttype temp = heap[index1];
+		heap[index1] = heap[index2];
+		heap[index2] = temp;
+	}
 	//remove - dequeue
 	
 	//reheapUp
