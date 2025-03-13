@@ -129,9 +129,89 @@ public class MyHeap <Ttype> {
 		
 
 		
+	}
+	
+	//reheapDown
+	
+	private void reheapDown(int currentParentIndex)
+	{
+		int indexLeftChild = currentParentIndex * 2 + 1;
+		int indexRightChild = currentParentIndex * 2 + 2;
 		
+		//  ja eksistē abi bērni:
+		if(indexLeftChild < counter && indexRightChild < counter)
+		{
+			//    ja kreisai bērns ir lielāks par labo -> kreiso bērnu salīdzinam
+			
+			if(((Comparable)(heap[indexLeftChild])).compareTo(heap[indexRightChild]) == 1)
+			{
+				//      ar pasu elementu 
+				
+			if(((Comparable)(heap[indexLeftChild])).compareTo(heap[currentParentIndex]) ==1)
+			{
+				//un pēc nepieciesamības mainām vietām
+				swap(indexLeftChild, currentParentIndex);
+				//un izsaucam rekursīvi reheapDown
+				reheapDown(indexLeftChild);
+			
+			}
+				
+			}
+			else //labais bērns ir lielāks par kreiso
+			{
+				if(((Comparable)(heap[indexRightChild])).compareTo(heap[currentParentIndex]) ==1)
+				{
+					//un pēc nepieciesamības mainām vietām
+					swap(indexRightChild, currentParentIndex);
+					//un izsaucam rekursīvi reheapDown
+					reheapDown(indexRightChild);
+				
+				}
+			}		
+		}
+	}
+	
+	
+	public void print() throws Exception{
+		if (isEmpty()) {
+			throw new Exception("Heap is empty and can't print");
+		}
+		
+		printHelp(0);
+	}
+	
+	private void printHelp(int currentParentIndex) {
+		System.out.println("P -> " + heap[currentParentIndex]);
+		
+		int indexLeftChild = currentParentIndex * 2 + 1;
+		int indexRightChild = currentParentIndex * 2 + 2;
+		
+		if (currentParentIndex * 2 + 1 < counter) {
+			System.out.println("Left ch _> " + heap[indexLeftChild]);
+			printHelp(indexLeftChild);
+		}
+		
+		// ja eksiste labais berns
+	}
+	
+	
+	
+	public void makeEmpty() {
 		
 	}
+
+	
+	// reheapdown funckcijas deklaracija
+	// aprekinat kreisa un laba berna ideksus
+	// izmantot counter noskaidrojam vai berni eskiste
+	// ja eksiste abi berni 
+		//ja kreisais berns ir lielaks par labo -> kreiso bernu salidzinam ar pasu elementu un pec nepieciesamibas
+		// mainam ar vietam un izsaucam rekursivi reheapdown
+		// ja labais ir lielaks par kreiso -> labo bernu saldzinam ar pasu elementu un pec nepieciesamibas mainam
+		// vietam un izsaucam reheapdown.
+	
+	// ja eksiste tikai kreisais berns
+	// ja nav bernu vispar (varbut var neapstradat)
 	
 	//print
 	//makeempty
