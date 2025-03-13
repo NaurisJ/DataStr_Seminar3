@@ -115,20 +115,20 @@ public class MyHeap <Ttype> {
 	// athriezam dzesamo elementu
 	
 	
-	private Ttype dequeue() throws Exception{
-		if (isEmpty()) {
-			throw new Exception("Can't dequeue from empty list");
+	public Ttype dequeue() throws Exception{
+		if(isEmpty())
+		{
+			throw new Exception("Heap is empty and it is not possible to retrieve max element");
 		}
 		
 		Ttype maxElement = heap[0];
 		
 		heap[0] = heap[counter-1];
+		counter--;
 		reheapDown(0);
-		
+	
 		return maxElement;
-		
-
-		
+	
 	}
 	
 	//reheapDown
@@ -196,8 +196,12 @@ public class MyHeap <Ttype> {
 	
 	
 	
-	public void makeEmpty() {
-		
+	public void makeEmpty()
+	{
+		counter=0;
+		size = DEFAULT_SIZE;
+		heap = (Ttype[])new Object[size];
+		System.gc();
 	}
 
 	
