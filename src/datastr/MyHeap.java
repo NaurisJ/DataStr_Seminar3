@@ -106,6 +106,33 @@ public class MyHeap <Ttype> {
 	//reheapUp
 	//reheapDown
 	
+	// TODO
+	// dequeue funkcijas deklaracija
+	// parbaudes
+	// saglabat elementu pedeja rinda no kreisas puses ieliekam 0 suna
+	// izsaucam reheapdown
+	// counter samazinam
+	// athriezam dzesamo elementu
+	
+	
+	private Ttype dequeue() throws Exception{
+		if (isEmpty()) {
+			throw new Exception("Can't dequeue from empty list");
+		}
+		
+		Ttype maxElement = heap[0];
+		
+		heap[0] = heap[counter-1];
+		reheapDown(0);
+		
+		return maxElement;
+		
+
+		
+		
+		
+	}
+	
 	//print
 	//makeempty
 	
